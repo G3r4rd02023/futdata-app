@@ -40,8 +40,8 @@ export function MatchForm({ match, onSubmit, onCancel }) {
 
   const loadLeagues = async () => {
     try {
-      const data = await leagueService.getAll();
-      setLeagues(data);
+      const result = await leagueService.getAll(1, 100);
+      setLeagues(result.items || result);
     } catch (err) {
       console.error('Error loading leagues', err);
     }

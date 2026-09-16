@@ -35,7 +35,7 @@ export function Dashboard() {
 
   if (error) {
     return (
-      <div className="bg-red-50 text-red-600 p-3 rounded-md">{error}</div>
+      <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-md">{error}</div>
     );
   }
 
@@ -45,7 +45,7 @@ export function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-slate-100">Dashboard</h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
@@ -58,13 +58,13 @@ export function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Matches by Month Chart */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Partidos por Mes</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Partidos por Mes</h2>
           <div className="space-y-3">
             {charts.matchesByMonth.map((item, i) => (
               <div key={i} className="flex items-center gap-3">
-                <span className="text-sm text-gray-500 w-20">{item.month}</span>
-                <div className="flex-1 bg-gray-100 rounded-full h-6 overflow-hidden">
+                <span className="text-sm text-gray-500 dark:text-slate-400 w-20">{item.month}</span>
+                <div className="flex-1 bg-gray-100 dark:bg-slate-700 rounded-full h-6 overflow-hidden">
                   <div
                     className="bg-green-500 h-full rounded-full transition-all duration-500"
                     style={{
@@ -72,33 +72,33 @@ export function Dashboard() {
                     }}
                   />
                 </div>
-                <span className="text-sm font-medium text-gray-700 w-8 text-right">{item.count}</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-slate-300 w-8 text-right">{item.count}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Result Distribution */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Distribución de Resultados</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Distribución de Resultados</h2>
           <div className="flex items-center justify-center gap-8 py-4">
             <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-green-600">{charts.resultDistribution.wins}</span>
+              <div className="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center mx-auto">
+                <span className="text-2xl font-bold text-green-600 dark:text-green-400">{charts.resultDistribution.wins}</span>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Victorias</p>
+              <p className="text-sm text-gray-500 dark:text-slate-400 mt-2">Victorias</p>
             </div>
             <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-yellow-100 flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-yellow-600">{charts.resultDistribution.draws}</span>
+              <div className="w-20 h-20 rounded-full bg-yellow-100 dark:bg-yellow-900/40 flex items-center justify-center mx-auto">
+                <span className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">{charts.resultDistribution.draws}</span>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Empates</p>
+              <p className="text-sm text-gray-500 dark:text-slate-400 mt-2">Empates</p>
             </div>
             <div className="text-center">
-              <div className="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mx-auto">
-                <span className="text-2xl font-bold text-red-600">{charts.resultDistribution.losses}</span>
+              <div className="w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center mx-auto">
+                <span className="text-2xl font-bold text-red-600 dark:text-red-400">{charts.resultDistribution.losses}</span>
               </div>
-              <p className="text-sm text-gray-500 mt-2">Derrotas</p>
+              <p className="text-sm text-gray-500 dark:text-slate-400 mt-2">Derrotas</p>
             </div>
           </div>
         </div>
@@ -106,25 +106,25 @@ export function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Matches */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Últimos Partidos</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Últimos Partidos</h2>
           {recentMatches.length === 0 ? (
-            <p className="text-gray-400 text-sm text-center py-4">No hay partidos recientes</p>
+            <p className="text-gray-400 dark:text-slate-500 text-sm text-center py-4">No hay partidos recientes</p>
           ) : (
             <div className="space-y-3">
               {recentMatches.map((match) => (
                 <div
                   key={match.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                  className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-700 rounded-lg"
                 >
                   <div className="flex-1 flex items-center justify-end gap-2">
-                    <span className="text-sm font-semibold text-gray-800 truncate">{match.homeTeamName}</span>
+                    <span className="text-sm font-semibold text-gray-800 dark:text-slate-100 truncate">{match.homeTeamName}</span>
                     {match.homeTeamLogo && (
                       <img src={match.homeTeamLogo} alt="" className="h-5 w-5 object-contain flex-shrink-0" />
                     )}
                   </div>
                   <div className="px-3 text-center flex-shrink-0">
-                    <span className="font-bold text-base text-gray-800">
+                    <span className="font-bold text-base text-gray-800 dark:text-slate-100">
                       {match.homeGoals} - {match.awayGoals}
                     </span>
                   </div>
@@ -132,7 +132,7 @@ export function Dashboard() {
                     {match.awayTeamLogo && (
                       <img src={match.awayTeamLogo} alt="" className="h-5 w-5 object-contain flex-shrink-0" />
                     )}
-                    <span className="text-sm font-semibold text-gray-800 truncate">{match.awayTeamName}</span>
+                    <span className="text-sm font-semibold text-gray-800 dark:text-slate-100 truncate">{match.awayTeamName}</span>
                   </div>
                 </div>
               ))}
@@ -141,33 +141,33 @@ export function Dashboard() {
         </div>
 
         {/* Upcoming Matches */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Próximos Partidos</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Próximos Partidos</h2>
           {upcomingMatches.length === 0 ? (
-            <p className="text-gray-400 text-sm text-center py-4">No hay partidos programados</p>
+            <p className="text-gray-400 dark:text-slate-500 text-sm text-center py-4">No hay partidos programados</p>
           ) : (
             <div className="space-y-3">
               {upcomingMatches.map((match) => (
                 <div
                   key={match.id}
-                  className="p-3 bg-gray-50 rounded-lg"
+                  className="p-3 bg-gray-50 dark:bg-slate-700 rounded-lg"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1 flex items-center justify-end gap-2">
-                      <span className="text-sm font-semibold text-gray-800 truncate">{match.homeTeamName}</span>
+                      <span className="text-sm font-semibold text-gray-800 dark:text-slate-100 truncate">{match.homeTeamName}</span>
                       {match.homeTeamLogo && (
                         <img src={match.homeTeamLogo} alt="" className="h-5 w-5 object-contain flex-shrink-0" />
                       )}
                     </div>
-                    <span className="px-2 text-xs text-gray-400">vs</span>
+                    <span className="px-2 text-xs text-gray-400 dark:text-slate-500">vs</span>
                     <div className="flex-1 flex items-center gap-2">
                       {match.awayTeamLogo && (
                         <img src={match.awayTeamLogo} alt="" className="h-5 w-5 object-contain flex-shrink-0" />
                       )}
-                      <span className="text-sm font-semibold text-gray-800 truncate">{match.awayTeamName}</span>
+                      <span className="text-sm font-semibold text-gray-800 dark:text-slate-100 truncate">{match.awayTeamName}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-400 text-center mt-1">
+                  <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-1">
                     {new Date(match.matchDate).toLocaleDateString('es-ES', {
                       month: 'short',
                       day: 'numeric',
@@ -183,22 +183,22 @@ export function Dashboard() {
         </div>
 
         {/* Top Teams */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Top 5 Equipos</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Top 5 Equipos</h2>
           {topTeams.length === 0 ? (
-            <p className="text-gray-400 text-sm text-center py-4">No hay datos disponibles</p>
+            <p className="text-gray-400 dark:text-slate-500 text-sm text-center py-4">No hay datos disponibles</p>
           ) : (
             <div className="space-y-3">
               {topTeams.map((team) => (
                 <div
                   key={team.teamId}
-                  className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"
+                  className="flex items-center gap-3 p-2 bg-gray-50 dark:bg-slate-700 rounded-lg"
                 >
                   <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                    team.rank === 1 ? 'bg-yellow-100 text-yellow-700' :
-                    team.rank === 2 ? 'bg-gray-100 text-gray-600' :
-                    team.rank === 3 ? 'bg-orange-50 text-orange-600' :
-                    'bg-gray-50 text-gray-500'
+                    team.rank === 1 ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-400' :
+                    team.rank === 2 ? 'bg-gray-100 text-gray-600 dark:bg-slate-600 dark:text-slate-300' :
+                    team.rank === 3 ? 'bg-orange-50 text-orange-600 dark:bg-orange-900/40 dark:text-orange-400' :
+                    'bg-gray-50 text-gray-500 dark:bg-slate-600 dark:text-slate-400'
                   }`}>
                     {team.rank}
                   </span>
@@ -208,11 +208,11 @@ export function Dashboard() {
                     <span className="text-lg">⚽</span>
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-800 truncate">{team.teamName}</p>
+                    <p className="text-sm font-medium text-gray-800 dark:text-slate-100 truncate">{team.teamName}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-green-600">{team.points} pts</p>
-                    <p className="text-xs text-gray-400">{team.winRate}%</p>
+                    <p className="text-sm font-bold text-green-600 dark:text-green-400">{team.points} pts</p>
+                    <p className="text-xs text-gray-400 dark:text-slate-500">{team.winRate}%</p>
                   </div>
                 </div>
               ))}
@@ -223,17 +223,17 @@ export function Dashboard() {
 
       {/* Active Leagues */}
       {activeLeagues.length > 0 && (
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-lg font-bold text-gray-800 mb-4">Ligas Activas</h2>
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-bold text-gray-800 dark:text-slate-100 mb-4">Ligas Activas</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {activeLeagues.map((league) => (
               <div
                 key={league.id}
                 onClick={() => navigate(`/leagues/${league.id}`)}
-                className="p-4 bg-green-50 rounded-lg border border-green-200 hover:shadow-md transition-shadow cursor-pointer"
+                className="p-4 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800 hover:shadow-md transition-shadow cursor-pointer"
               >
-                <h3 className="font-bold text-gray-800">{league.name}</h3>
-                <div className="flex gap-4 mt-2 text-sm text-gray-500">
+                <h3 className="font-bold text-gray-800 dark:text-slate-100">{league.name}</h3>
+                <div className="flex gap-4 mt-2 text-sm text-gray-500 dark:text-slate-400">
                   <span>⚽ {league.teamsCount} equipos</span>
                   <span>📊 {league.matchesCount} partidos</span>
                 </div>

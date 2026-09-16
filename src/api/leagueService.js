@@ -1,8 +1,8 @@
 import api from './axios';
 
 export const leagueService = {
-  async getAll() {
-    const response = await api.get('/leagues');
+  async getAll(page = 1, pageSize = 12) {
+    const response = await api.get('/leagues', { params: { page, pageSize } });
     return response.data;
   },
 
@@ -11,8 +11,8 @@ export const leagueService = {
     return response.data;
   },
 
-  async search(searchTerm) {
-    const response = await api.get('/leagues/search', { params: { searchTerm } });
+  async search(searchTerm, page = 1, pageSize = 12) {
+    const response = await api.get('/leagues', { params: { search: searchTerm, page, pageSize } });
     return response.data;
   },
 

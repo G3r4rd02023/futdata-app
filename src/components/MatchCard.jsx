@@ -13,7 +13,7 @@ export function MatchCard({ match, onEdit, onDelete, onResult, onChangeStatus })
   const config = statusConfig[match.status] || statusConfig.Programado;
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-200 dark:border-slate-700">
       <div className="bg-gradient-to-r from-green-500 to-green-600 p-3">
         <div className="flex items-center justify-between">
           <span className="text-white text-sm font-medium">
@@ -38,16 +38,16 @@ export function MatchCard({ match, onEdit, onDelete, onResult, onChangeStatus })
                 <span className="text-2xl">⚽</span>
               )}
             </div>
-            <p className="text-sm font-medium text-gray-800">{match.homeTeamName}</p>
+            <p className="text-sm font-medium text-gray-800 dark:text-slate-100">{match.homeTeamName}</p>
           </div>
 
           <div className="text-center px-4">
             {match.status === 'Finalizado' && match.homeGoals != null && match.awayGoals != null ? (
-              <span className="text-2xl font-bold text-gray-800">
+              <span className="text-2xl font-bold text-gray-800 dark:text-slate-100">
                 {match.homeGoals} - {match.awayGoals}
               </span>
             ) : (
-              <span className="text-xl font-bold text-gray-400">vs</span>
+              <span className="text-xl font-bold text-gray-400 dark:text-slate-500">vs</span>
             )}
           </div>
 
@@ -59,11 +59,11 @@ export function MatchCard({ match, onEdit, onDelete, onResult, onChangeStatus })
                 <span className="text-2xl">⚽</span>
               )}
             </div>
-            <p className="text-sm font-medium text-gray-800">{match.awayTeamName}</p>
+            <p className="text-sm font-medium text-gray-800 dark:text-slate-100">{match.awayTeamName}</p>
           </div>
         </div>
 
-        <div className="mt-3 text-center text-sm text-gray-500">
+        <div className="mt-3 text-center text-sm text-gray-500 dark:text-slate-400">
           {new Date(match.matchDate).toLocaleDateString('es-ES', {
             weekday: 'short',
             year: 'numeric',
@@ -75,7 +75,7 @@ export function MatchCard({ match, onEdit, onDelete, onResult, onChangeStatus })
         </div>
 
         {match.notes && (
-          <p className="mt-2 text-xs text-gray-400 text-center italic">{match.notes}</p>
+          <p className="mt-2 text-xs text-gray-400 dark:text-slate-500 text-center italic">{match.notes}</p>
         )}
       </div>
 

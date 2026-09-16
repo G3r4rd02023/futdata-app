@@ -23,10 +23,10 @@ export function Rankings() {
   };
 
   const getMedalColor = (rank) => {
-    if (rank === 1) return 'bg-yellow-100 border-yellow-400';
-    if (rank === 2) return 'bg-gray-100 border-gray-400';
-    if (rank === 3) return 'bg-orange-50 border-orange-300';
-    return 'bg-white border-gray-200';
+    if (rank === 1) return 'bg-yellow-100 border-yellow-400 dark:bg-yellow-900/30 dark:border-yellow-700';
+    if (rank === 2) return 'bg-gray-100 border-gray-400 dark:bg-slate-700 dark:border-slate-500';
+    if (rank === 3) return 'bg-orange-50 border-orange-300 dark:bg-orange-900/30 dark:border-orange-700';
+    return 'bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700';
   };
 
   const getMedalIcon = (rank) => {
@@ -38,10 +38,10 @@ export function Rankings() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Rankings Generales</h1>
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-slate-100 mb-6">Rankings Generales</h1>
 
       {error && (
-        <div className="bg-red-50 text-red-600 p-3 rounded-md mb-4">{error}</div>
+        <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-md mb-4">{error}</div>
       )}
 
       {loading ? (
@@ -49,10 +49,10 @@ export function Rankings() {
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
         </div>
       ) : rankings.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-12 text-center">
+        <div className="bg-white dark:bg-slate-800 rounded-lg shadow p-12 text-center border border-gray-200 dark:border-slate-700">
           <span className="text-6xl">🏆</span>
-          <p className="text-gray-500 mt-4">No hay datos de rankings disponibles</p>
-          <p className="text-gray-400 text-sm mt-2">Los rankings se generan automáticamente al registrar resultados de partidos</p>
+          <p className="text-gray-500 dark:text-slate-400 mt-4">No hay datos de rankings disponibles</p>
+          <p className="text-gray-400 dark:text-slate-500 text-sm mt-2">Los rankings se generan automáticamente al registrar resultados de partidos</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -72,27 +72,27 @@ export function Rankings() {
                   <span className="text-2xl flex-shrink-0">⚽</span>
                 )}
                 <div className="min-w-0">
-                  <p className="font-bold text-gray-800 truncate">{team.teamName}</p>
-                  <p className="text-xs text-gray-500">{team.leaguesCount} liga(s)</p>
+                  <p className="font-bold text-gray-800 dark:text-slate-100 truncate">{team.teamName}</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">{team.leaguesCount} liga(s)</p>
                 </div>
               </div>
 
               <div className="flex gap-6 text-center flex-shrink-0">
                 <div>
-                  <p className="text-2xl font-bold text-green-600">{team.totalPoints}</p>
-                  <p className="text-xs text-gray-500">Puntos</p>
+                  <p className="text-2xl font-bold text-green-600 dark:text-green-400">{team.totalPoints}</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">Puntos</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold text-gray-800">{team.totalMatches}</p>
-                  <p className="text-xs text-gray-500">Partidos</p>
+                  <p className="text-lg font-semibold text-gray-800 dark:text-slate-100">{team.totalMatches}</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">Partidos</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold text-blue-600">{team.winRate}%</p>
-                  <p className="text-xs text-gray-500">Victorias</p>
+                  <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">{team.winRate}%</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">Victorias</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold text-purple-600">{team.avgGoals}</p>
-                  <p className="text-xs text-gray-500">Goles/PJ</p>
+                  <p className="text-lg font-semibold text-purple-600 dark:text-purple-400">{team.avgGoals}</p>
+                  <p className="text-xs text-gray-500 dark:text-slate-400">Goles/PJ</p>
                 </div>
               </div>
             </div>

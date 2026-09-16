@@ -1,8 +1,9 @@
 import api from './axios';
 
 export const teamService = {
-  async getAll(search = '') {
-    const params = search ? { search } : {};
+  async getAll(search = '', page = 1, pageSize = 12) {
+    const params = { page, pageSize };
+    if (search) params.search = search;
     const response = await api.get('/teams', { params });
     return response.data;
   },

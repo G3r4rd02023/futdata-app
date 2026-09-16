@@ -25,7 +25,8 @@ export function LeagueDetail() {
       setLeague(data);
 
       if (isAdmin) {
-        const allTeams = await teamService.getAll();
+        const teamResult = await teamService.getAll('', 1, 200);
+        const allTeams = teamResult.items || teamResult;
         const leagueTeamIds = data.teams.map(t => t.id);
         setAvailableTeams(allTeams.filter(t => !leagueTeamIds.includes(t.id)));
       }
@@ -96,7 +97,7 @@ export function LeagueDetail() {
 
   if (error || !league) {
     return (
-      <div className="bg-red-50 text-red-600 p-3 rounded-md">{error || 'Liga no encontrada'}</div>
+      <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-md">{error || 'Liga no encontrada'}</div>
     );
   }
 
@@ -109,21 +110,21 @@ export function LeagueDetail() {
         ← Volver a Ligas
       </button>
 
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 mb-6 border border-gray-200 dark:border-slate-700">
         <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">{league.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-slate-100">{league.name}</h1>
             <div className="flex items-center gap-3 mt-2">
               <span className={`text-sm px-3 py-1 rounded-full ${statusColors[league.status]}`}>
                 {league.status}
               </span>
-              <span className="text-gray-500 capitalize">{league.format}</span>
+              <span className="text-gray-500 dark:text-slate-400 capitalize">{league.format}</span>
             </div>
             {league.description && (
-              <p className="text-gray-500 mt-2">{league.description}</p>
+              <p className="text-gray-500 dark:text-slate-400 mt-2">{league.description}</p>
             )}
             {league.startDate && (
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-400 dark:text-slate-500 text-sm mt-1">
                 {new Date(league.startDate).toLocaleDateString()} - {league.endDate ? new Date(league.endDate).toLocaleDateString() : 'Sin fecha fin'}
               </p>
             )}
@@ -134,7 +135,7 @@ export function LeagueDetail() {
               {nextStatus[league.status] && (
                 <button
                   onClick={() => handleStatusChange(nextStatus[league.status])}
-                  className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors text-sm"
+                  className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition-colors text-sm"
                 >
                   → {nextStatus[league.status]}
                 </button>
@@ -153,15 +154,15 @@ export function LeagueDetail() {
       <div className="flex gap-4 mb-6">
         <button
           onClick={() => navigate(`/leagues/${id}/standings`)}
-          className="bg-white border-2 border-green-500 text-green-600 px-4 py-2 rounded-md hover:bg-green-50 transition-colors font-medium"
+          className="bg-white dark:bg-slate-800 border-2 border-green-500 text-green-600 dark:text-green-400 px-4 py-2 rounded-md hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors font-medium"
         >
           📊 Ver Tabla de Posiciones
         </button>
       </div>
 
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-slate-700">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-slate-100">
             Equipos ({league.teams.length})
           </h2>
           {isAdmin && (
@@ -175,17 +176,17 @@ export function LeagueDetail() {
         </div>
 
         {showAddTeam && (
-          <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Seleccionar equipo:</h3>
+          <div className="mb-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-lg">
+            <h3 className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Seleccionar equipo:</h3>
             {availableTeams.length === 0 ? (
-              <p className="text-gray-400 text-sm">No hay equipos disponibles</p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm">No hay equipos disponibles</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                 {availableTeams.map((team) => (
                   <button
                     key={team.id}
                     onClick={() => handleAddTeam(team.id)}
-                    className="flex items-center gap-2 p-2 bg-white border border-gray-200 rounded-md hover:border-blue-500 transition-colors text-left"
+                    className="flex items-center gap-2 p-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-md hover:border-blue-500 transition-colors text-left"
                   >
                     {team.logoUrl ? (
                       <img src={team.logoUrl} alt="" className="h-8 w-8 object-contain" />
@@ -193,8 +194,8 @@ export function LeagueDetail() {
                       <span className="text-xl">⚽</span>
                     )}
                     <div>
-                      <p className="text-sm font-medium text-gray-800">{team.name}</p>
-                      <p className="text-xs text-gray-400">{team.city}</p>
+                      <p className="text-sm font-medium text-gray-800 dark:text-slate-100">{team.name}</p>
+                      <p className="text-xs text-gray-400 dark:text-slate-500">{team.city}</p>
                     </div>
                   </button>
                 ))}
@@ -206,14 +207,14 @@ export function LeagueDetail() {
         {league.teams.length === 0 ? (
           <div className="text-center py-8">
             <span className="text-4xl">⚽</span>
-            <p className="text-gray-400 mt-2">No hay equipos en esta liga</p>
+            <p className="text-gray-400 dark:text-slate-500 mt-2">No hay equipos en esta liga</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {league.teams.map((team) => (
               <div
                 key={team.id}
-                className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-slate-700 rounded-lg"
               >
                 {team.logoUrl ? (
                   <img src={team.logoUrl} alt="" className="h-10 w-10 object-contain" />
@@ -221,13 +222,13 @@ export function LeagueDetail() {
                   <span className="text-2xl">⚽</span>
                 )}
                 <div className="flex-1">
-                  <p className="font-medium text-gray-800">{team.name}</p>
-                  <p className="text-sm text-gray-400">{team.city}</p>
+                  <p className="font-medium text-gray-800 dark:text-slate-100">{team.name}</p>
+                  <p className="text-sm text-gray-400 dark:text-slate-500">{team.city}</p>
                 </div>
                 {isAdmin && (
                   <button
                     onClick={() => handleRemoveTeam(team.id)}
-                    className="text-red-500 hover:text-red-700 text-sm"
+                    className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 text-sm"
                   >
                     ✕
                   </button>

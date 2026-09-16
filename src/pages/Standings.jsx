@@ -46,7 +46,7 @@ export function Standings() {
 
   if (error || !league) {
     return (
-      <div className="bg-red-50 text-red-600 p-3 rounded-md">{error || 'Liga no encontrada'}</div>
+      <div className="bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-3 rounded-md">{error || 'Liga no encontrada'}</div>
     );
   }
 
@@ -60,8 +60,8 @@ export function Standings() {
       </button>
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">{league.name}</h1>
-        <p className="text-gray-500 mt-1">Tabla de Posiciones</p>
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-slate-100">{league.name}</h1>
+        <p className="text-gray-500 dark:text-slate-400 mt-1">Tabla de Posiciones</p>
       </div>
 
       <StandingTable
